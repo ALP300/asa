@@ -1,103 +1,178 @@
 import Image from "next/image";
+import Sidebar from "./components/Sidebar";
 
 export default function Home() {
-  return (
-    <div className="grid grid-rows-[20px_1fr_20px] items-center justify-items-center min-h-screen p-8 pb-20 gap-16 sm:p-20 font-[family-name:var(--font-geist-sans)]">
-      <main className="flex flex-col gap-[32px] row-start-2 items-center sm:items-start">
-        <Image
-          className="dark:invert"
-          src="/next.svg"
-          alt="Next.js logo"
-          width={180}
-          height={38}
-          priority
-        />
-        <ol className="list-inside list-decimal text-sm/6 text-center sm:text-left font-[family-name:var(--font-geist-mono)]">
-          <li className="mb-2 tracking-[-.01em]">
-            Get started by editing{" "}
-            <code className="bg-black/[.05] dark:bg-white/[.06] px-1 py-0.5 rounded font-[family-name:var(--font-geist-mono)] font-semibold">
-              src/app/page.tsx
-            </code>
-            .
-          </li>
-          <li className="tracking-[-.01em]">
-            Save and see your changes instantly.
-          </li>
-        </ol>
+  // Sample data for beehive cards
+  const beehives = [
+    {
+      id: "321",
+      temperature: "20°C",
+      humidity: "10%",
+      weight: "20 k",
+      image: "/images/colmenas.jpg",
+      imageCount: "8k",
+      imageIcon: "/images/camara.png",
+    },
+    {
+      id: "6436",
+      temperature: "20°C",
+      humidity: "10%",
+      weight: "20 k",
+      image: "/images/colmenas.jpg",
+      imageCount: "20k",
+      imageIcon: "/images/camara.png",
+    },
+    {
+      id: "5436",
+      temperature: "20°C",
+      humidity: "10%",
+      weight: "20 k",
+      image: "/images/colmenas.jpg",
+      imageCount: "20k",
+      imageIcon: "/images/camara.png",
+    },
+    {
+      id: "6452",
+      temperature: "20°C",
+      humidity: "10%",
+      weight: "20 k",
+      image: "/images/colmenas.jpg",
+      imageCount: "19k",
+      imageIcon: "/images/camara.png",
+    },
+    {
+      id: "7482",
+      temperature: "20°C",
+      humidity: "10%",
+      weight: "20 k",
+      image: "/images/colmenas.jpg",
+      imageCount: "20k",
+      imageIcon: "/images/camara.png",
+    },
+    {
+      id: "8764",
+      temperature: "20°C",
+      humidity: "10%",
+      weight: "20 k",
+      image: "/images/colmenas.jpg",
+      imageCount: "20k",
+      imageIcon: "/images/camara.png",
+    },
+  ];
 
-        <div className="flex gap-4 items-center flex-col sm:flex-row">
-          <a
-            className="rounded-full border border-solid border-transparent transition-colors flex items-center justify-center bg-foreground text-background gap-2 hover:bg-[#383838] dark:hover:bg-[#ccc] font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 sm:w-auto"
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <Image
-              className="dark:invert"
-              src="/vercel.svg"
-              alt="Vercel logomark"
-              width={20}
-              height={20}
-            />
-            Deploy now
-          </a>
-          <a
-            className="rounded-full border border-solid border-black/[.08] dark:border-white/[.145] transition-colors flex items-center justify-center hover:bg-[#f2f2f2] dark:hover:bg-[#1a1a1a] hover:border-transparent font-medium text-sm sm:text-base h-10 sm:h-12 px-4 sm:px-5 w-full sm:w-auto md:w-[158px]"
-            href="https://nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Read our docs
-          </a>
+  return (
+    <div className="flex min-h-screen bg-gray-50">
+      {/* Sidebar */}
+      <Sidebar />
+
+      {/* Main Content */}
+      <div className="flex-1 p-4 sm:p-6 lg:p-8">
+        {/* Header */}
+        <header className="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
+          <div className="flex flex-col sm:flex-row items-start sm:items-center gap-3 w-full sm:w-auto">
+            <h1 className="text-xl sm:text-2xl font-bold text-gray-800">
+              Gestionar Colmena
+            </h1>
+            <button className="bg-yellow-400 text-gray-800 px-4 py-2 rounded-lg hover:bg-yellow-500 transition-colors text-sm sm:text-base font-medium">
+              Colmena
+            </button>
+            <div className="relative w-full sm:w-64">
+              <input
+                type="text"
+                placeholder="Buscar Colmena"
+                className="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-blue-500 text-sm"
+              />
+              <span className="absolute left-3 top-1/2 transform -translate-y-1/2">
+                <Image
+                  src="/images/search-icon.svg"
+                  alt="Search Icon"
+                  width={16}
+                  height={16}
+                />
+              </span>
+            </div>
+          </div>
+          <div className="flex items-center gap-3">
+            <span className="text-gray-700 text-sm sm:text-base">
+              Leonardo Palomino
+            </span>
+            <button className="bg-yellow-400 text-gray-800 px-4 py-2 rounded-lg hover:bg-yellow-500 transition-colors text-sm sm:text-base font-medium">
+              + Agregar
+            </button>
+          </div>
+        </header>
+
+        {/* Beehive Cards Grid */}
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-4">
+          {beehives.map((beehive) => (
+            <div
+              key={beehive.id}
+              className="bg-white rounded-xl shadow-sm hover:shadow-md transition-shadow overflow-hidden"
+            >
+              <div className="relative">
+                <Image
+                  src={beehive.image}
+                  alt={`Beehive ${beehive.id}`}
+                  width={300}
+                  height={150}
+                  className="w-full h-36 object-cover"
+                />
+                <div className="absolute top-2 right-2 bg-white rounded-full p-1 shadow-sm">
+                  <Image
+                    src="/images/signal-icon.svg"
+                    alt="Signal Icon"
+                    width={16}
+                    height={16}
+                  />
+                </div>
+              </div>
+              <div className="p-3">
+                <h2 className="text-base font-semibold text-gray-800 mb-2">
+                  N° - {beehive.id}
+                </h2>
+                <div className="flex justify-between items-center text-xs text-gray-600">
+                  <div className="flex items-center gap-1">
+                    <Image
+                      src="/images/temperatura.png"
+                      alt="Temperature Icon"
+                      width={14}
+                      height={14}
+                    />
+                    <span>{beehive.temperature}</span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <Image
+                      src="/images/humedad.png"
+                      alt="Humidity Icon"
+                      width={14}
+                      height={14}
+                    />
+                    <span>{beehive.humidity}</span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <Image
+                      src="/images/escala-de-peso.png"
+                      alt="Weight Icon"
+                      width={14}
+                      height={14}
+                    />
+                    <span>{beehive.weight}</span>
+                  </div>
+                  <div className="flex items-center gap-1">
+                    <Image
+                      src={beehive.imageIcon}
+                      alt="Image Count Icon"
+                      width={14}
+                      height={14}
+                    />
+                    <span>{beehive.imageCount}</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
         </div>
-      </main>
-      <footer className="row-start-3 flex gap-[24px] flex-wrap items-center justify-center">
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org/learn?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/file.svg"
-            alt="File icon"
-            width={16}
-            height={16}
-          />
-          Learn
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/window.svg"
-            alt="Window icon"
-            width={16}
-            height={16}
-          />
-          Examples
-        </a>
-        <a
-          className="flex items-center gap-2 hover:underline hover:underline-offset-4"
-          href="https://nextjs.org?utm_source=create-next-app&utm_medium=appdir-template-tw&utm_campaign=create-next-app"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          <Image
-            aria-hidden
-            src="/globe.svg"
-            alt="Globe icon"
-            width={16}
-            height={16}
-          />
-          Go to nextjs.org →
-        </a>
-      </footer>
+      </div>
     </div>
   );
 }
